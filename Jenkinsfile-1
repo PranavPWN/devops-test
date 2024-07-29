@@ -9,8 +9,7 @@ pipeline {
   stages {
     stage('Semgrep-Scan') {
       steps {
-        sh 'sudo snap install semgrep'
-        sh 'sudo semgrep scan'
+        sh 'semgrep --config "p/xss"'
         }
       }
     }
