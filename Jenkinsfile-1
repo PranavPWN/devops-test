@@ -9,8 +9,8 @@ pipeline {
   stages {
     stage('Semgrep-Scan') {
       steps {
-        sh 'snap install semgrep'
-        sh 'semgrep scan'
+        sh 'sudo snap install semgrep'
+        sh 'sudo semgrep scan'
         }
       }
     }
