@@ -1,16 +1,10 @@
 pipeline {
   agent any
-  environment {
-    // SEMGREP_BASELINE_REF = ""
-    SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
-    SEMGREP_PR_ID = "${env.CHANGE_ID}"
-    //  SEMGREP_TIMEOUT = "300"
-    }
-  stages {
-    stage('Semgrep-Scan') {
-      steps {
-        sh 'semgrep --config "p/xss"'
-        }
+    stages {
+      stage('Semgrep-Scan') {
+        steps {
+          sh 'sudo docker run -e SEMGREP_APP_TOKEN=d53484911e5241c5dd757e5251821baf64e0440e1c29ef56c49a5d12f25fe357 --rm -v "${PWD}:/src" semgrep/semgrep semgrep ci'
       }
     }
   }
+}
